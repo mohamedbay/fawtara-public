@@ -2,6 +2,17 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import type { Invoice, InvoiceFormData } from '../types/invoice';
 
+// Normalize only the search comparison; keep invoice text exactly as entered.
+function normalizeSearchText(text: string): string {
+  return text
+    .normalize('NFKC')
+    .replace(/[\u0640\u064B-\u065F\u0670]/g, '')
+    .replace(/[أإآٱ]/g, 'ا')
+    .toLowerCase()
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 interface InvoiceStore {
   invoices: Invoice[];
   addInvoice: (invoiceData: InvoiceFormData) => void;
@@ -35,9 +46,9 @@ export const useInvoiceStore = create<InvoiceStore>()(
       },
       getInvoiceById: (id) => get().invoices.find((invoice) => invoice.id === id),
       searchInvoices: (query) => {
-        const term = query.trim().toLocaleLowerCase();
+        const term = normalizeSearchText(query);
         return get().invoices.filter((invoice) =>
-          `${invoice.clientName} ${invoice.notes}`.toLocaleLowerCase().includes(term),
+          normalizeSearchText(`${invoice.clientName} ${invoice.notes}`).includes(term),
         );
       },
     }),
