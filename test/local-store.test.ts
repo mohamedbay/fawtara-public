@@ -28,6 +28,17 @@ test('invoices persist, reload, update and delete without network access', async
     assert.equal(useInvoiceStore.getState().searchInvoices('تجريبي').length, 1);
     assert.equal(useInvoiceStore.getState().searchInvoices('غير موجود').length, 0);
 
+    const arabicData = { ...data, clientName: 'أَحْمَـد', notes: 'إِيصال  رقم   12' };
+    useInvoiceStore.getState().addInvoice(arabicData);
+    const arabicInvoice = useInvoiceStore.getState().invoices[0];
+    assert.equal(useInvoiceStore.getState().searchInvoices('احمد')[0]?.id, arabicInvoice.id);
+    assert.equal(useInvoiceStore.getState().searchInvoices('إحمد')[0]?.id, arabicInvoice.id);
+    assert.equal(useInvoiceStore.getState().searchInvoices('ايصال رقم 12')[0]?.id, arabicInvoice.id);
+    assert.equal(useInvoiceStore.getState().searchInvoices('أَحْمَـد')[0]?.id, arabicInvoice.id);
+    assert.equal(useInvoiceStore.getState().searchInvoices('شركة أخرى').length, 0);
+    assert.equal(useInvoiceStore.getState().getInvoiceById(arabicInvoice.id)?.clientName, 'أَحْمَـد');
+    useInvoiceStore.getState().deleteInvoice(arabicInvoice.id);
+
     const saved = storage.getItem('fawtara-public-invoices');
     assert.ok(saved);
     assert.deepEqual(Object.keys(JSON.parse(saved).state), ['invoices']);
