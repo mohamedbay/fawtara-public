@@ -18,11 +18,11 @@ export function formatDate(date: string | Date, formatStr: string = 'dd MMM yyyy
 }
 
 /**
- * Get current date in ISO format
+ * Get the current local calendar date for the invoice date field
  * @returns ISO date string
  */
 export function getCurrentDate(): string {
-  return new Date().toISOString().split('T')[0];
+  return format(new Date(), 'yyyy-MM-dd');
 }
 
 /**
