@@ -14,6 +14,7 @@ A mobile-first Arabic invoice image archive. This public edition runs entirely i
 - Capture an invoice photo or select an image from the device.
 - Compress images locally and add a client name, date and notes.
 - Browse, search, filter by date, edit and delete invoice records.
+- Search Arabic client names and notes despite diacritics, tatweel, alef variants or repeated spaces; original invoice text is preserved.
 - Keep the archive in the current browser's local storage between visits.
 - Start with an empty archive; no customer records or credentials are included.
 
@@ -55,6 +56,15 @@ The build output is `dist/`. A static host must serve `index.html` for applicati
 Images and invoice details are stored in `localStorage` under `fawtara-public-invoices`. They stay in that browser and are not uploaded by this application. Clearing site data removes the archive. Browser storage has a size limit; this edition does not provide cloud backup or synchronization between devices.
 
 The interface downloads the Cairo font from Google Fonts. Image processing runs locally without downloading a compression worker.
+
+## Questions and support
+
+Maintainer-written Arabic FAQs:
+
+- [Where are invoices stored, and do they sync between devices?](https://github.com/mohamedkbay/fawtara-public/discussions/7)
+- [Are Flutter, notifications and Qwen implemented yet?](https://github.com/mohamedkbay/fawtara-public/discussions/8)
+
+Use [Q&A](https://github.com/mohamedkbay/fawtara-public/discussions/categories/q-a) for usage questions. When reporting a bug, describe the steps with fictional examples; do not post real invoice images, customer details or API keys.
 
 ## Technology
 
