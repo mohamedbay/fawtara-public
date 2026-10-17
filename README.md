@@ -17,7 +17,23 @@ A mobile-first Arabic invoice image archive. This public edition runs entirely i
 - Keep the archive in the current browser's local storage between visits.
 - Start with an empty archive; no customer records or credentials are included.
 
-## Run locally
+## Planned mobile edition · design preview
+
+<p align="center"><img src="docs/mobile-logo.png" width="72" alt="Proposed Fawtara receipt logo" /></p>
+
+**كل فاتورة، خطوة أوضح.**
+
+![Fawtara mobile design walkthrough](docs/mobile-walkthrough.gif)
+
+[Full design screen](docs/mobile-concept.png) · [43-second video](docs/mobile-walkthrough.mp4)
+
+The owner has requested a Flutter mobile edition with a local SQLite database, money amounts, due dates, financial alerts and optional Qwen analysis using each user's own API key.
+
+**Status:** these files are a UI and motion proposal with illustrative data. The current runnable source in this repository is still the browser edition documented above. The preview does not demonstrate an implemented Flutter app, notification delivery or a live Qwen response. Images of invoices and customer identities are not sent in this proposal's Qwen flow; a user would review a numerical summary before sending it.
+
+The logo and UI graphics are original presentation assets. Typography: IBM Plex Sans Arabic, SIL OFL 1.1; see [font license](docs/FONT-LICENSE.txt).
+
+## Run the browser edition locally
 
 Requires Node.js 22.18 or newer.
 
