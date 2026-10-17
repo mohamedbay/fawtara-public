@@ -14,7 +14,7 @@ import { Search as SearchIcon, Clear } from '@mui/icons-material';
 import { useInvoiceStore } from '../store/invoiceStore';
 import { InvoiceCard } from '../components/InvoiceCard';
 import { EmptyState } from '../components/EmptyState';
-import { sortByDate } from '../utils/dateUtils';
+import { formatDate, sortByDate } from '../utils/dateUtils';
 
 export function SearchPage() {
   const invoices = useInvoiceStore((state) => state.invoices);
@@ -122,11 +122,7 @@ export function SearchPage() {
                 {uniqueDates.map((date) => (
                   <Chip
                     key={date}
-                    label={new Date(date).toLocaleDateString('ar-EG', {
-                      month: 'short',
-                      day: 'numeric',
-                      year: 'numeric',
-                    })}
+                    label={formatDate(date)}
                     onClick={() => setDateFilter(dateFilter === date ? null : date)}
                     color={dateFilter === date ? 'primary' : 'default'}
                     variant={dateFilter === date ? 'filled' : 'outlined'}
